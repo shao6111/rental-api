@@ -38,21 +38,25 @@ public class ElectricityRecordController {
         return electricityRecordRepository.findByRoomId(roomId);
     }
 
-    // 新增電費紀錄
-    @PostMapping
-    public ElectricityRecord createRecord(@RequestBody ElectricityRecord record) {
+        // 新增電費紀錄
+    @PostMapping("/room/{roomId}")
+    public ElectricityRecord createRecord(
+            @PathVariable Long roomId,
+            @RequestBody ElectricityRecord record
+    ) {
+        record.setRoomId(roomId);
 
-        if (record.getPreviousReading() != null && record.getCurrentReading() != null) {
-            int usedUnits = record.getCurrentReading() - record.getPreviousReading();
-            record.setUsedUnits(usedUnits);
+    if (record.getPreviousReading() != null && record.getCurrentReading() != null) {
+        int usedUnits = record.getCurrentReading() - record.getPreviousReading();
+        record.setUsedUnits(usedUnits);
 
-            if (record.getPricePerUnit() != null) {
-                record.setTotalAmount(usedUnits * record.getPricePerUnit());
-            }
+        if (record.getPricePerUnit() != null) {
+            record.setTotalAmount(usedUnits * record.getPricePerUnit());
         }
-
-        return electricityRecordRepository.save(record);
     }
+
+    return electricityRecordRepository.save(record);
+}
 
     // 修改電費紀錄
     @PutMapping("/{id}")
