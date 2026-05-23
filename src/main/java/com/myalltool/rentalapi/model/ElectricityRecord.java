@@ -1,7 +1,8 @@
 package com.myalltool.rentalapi.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "electricity_record")
@@ -16,7 +17,7 @@ public class ElectricityRecord {
     private Long roomId;
 
     // 紀錄月份，例如 2026-05-01
-    private LocalDate recordMonth;
+    private String recordMonth;
 
     // 上期電表度數
     private Integer previousReading;
@@ -47,12 +48,12 @@ public class ElectricityRecord {
         this.roomId = roomId;
     }
 
-    public LocalDate getRecordMonth() {
-        return recordMonth;
+    public String getRecordMonth() {
+    return recordMonth;
     }
 
-    public void setRecordMonth(LocalDate recordMonth) {
-        this.recordMonth = recordMonth;
+    public void setRecordMonth(String recordMonth) {
+    this.recordMonth = recordMonth;
     }
 
     public Integer getPreviousReading() {
