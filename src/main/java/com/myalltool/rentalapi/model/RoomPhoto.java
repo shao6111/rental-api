@@ -19,6 +19,9 @@ public class RoomPhoto {
 
     private String description;
 
+    @Column(name = "photo_type")
+    private String photoType = "房間照片";
+
     @Column(name="created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -49,6 +52,14 @@ public class RoomPhoto {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public String getPhotoType() {
+    return photoType;
+}
+
+public void setPhotoType(String photoType) {
+    this.photoType = photoType;
+}
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
